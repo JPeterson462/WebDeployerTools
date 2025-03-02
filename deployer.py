@@ -1,5 +1,6 @@
 import argparse
 import subprocess
+import time
 
 STOP_BITNAMI = ['/opt/bitnami/ctlscript.sh', 'stop', 'apache']
 START_BITNAMI = ['/opt/bitnami/ctlscript.sh', 'start', 'apache']
@@ -28,6 +29,8 @@ execute_command(STOP_BITNAMI)
 # download SSL certificate
 
 # deploy SSL certificate
+
+time.sleep(5) # wait for Bitnami to be ready to restart
 
 print('Starting Bitnami...')
 execute_command(START_BITNAMI)
