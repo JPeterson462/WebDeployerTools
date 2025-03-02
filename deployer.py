@@ -61,7 +61,7 @@ print('Copying to htdocs folder...')
 repo_folder = find_first_subfolder('tmp')
 print(repo_folder)
 clear_directory(settings.htdocs)
-shutil.copytree('tmp/' + repo_folder, settings.htdocs, dirs_exist_ok=True)
+shutil.copytree(os.getcwd() + '/tmp/' + repo_folder, settings.htdocs, dirs_exist_ok=True)
 clear_directory('tmp')
 
 # download SSL certificate
