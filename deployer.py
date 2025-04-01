@@ -2,7 +2,9 @@ import argparse
 import distutils
 import errno
 import os
+import random
 import shutil
+import string
 import subprocess
 import time
 
@@ -14,14 +16,15 @@ def process_settings():
         prog='deployer',
         description='Utility for setting up a bitnami instance'
     )
-    parser.add_argument('-c', '--certificate', help='S3 Bucket path for the SSL certificate', required=True)
+    parser.add_argument('-c', '--certificate', help='ARN for the SSL certificate in ACM', required=True)
     parser.add_argument('-r', '--repo', help='Git repository (.git path) for the htdocs contents', required=True)
     parser.add_argument('-t', '--htdocs', help='Root directory for htdocs', required=True)
     return parser.parse_args()
 
-def execute_command(cmd, cwd=None):
+def execute_command(cmd, cwd=None, capture_output=False):
+    print(' '.join(cmd))
     if len(cmd) > 0:
-        return subprocess.run(cmd, cwd=cwd)
+        return subprocess.run(cmd, cwd=cwd, capture_output=capture_output)
 
 def create_directory(name):
     if not os.path.exists(name):
@@ -65,8 +68,10 @@ shutil.copytree(os.getcwd() + '/tmp/' + repo_folder, settings.htdocs, dirs_exist
 clear_directory('tmp')
 
 # download SSL certificate
+# TODO
 
 # deploy SSL certificate
+# TODO
 
 time.sleep(5) # wait for Bitnami to be ready to restart
 
