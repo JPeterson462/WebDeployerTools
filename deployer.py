@@ -8,8 +8,8 @@ import string
 import subprocess
 import time
 
-STOP_BITNAMI = [] #['/opt/bitnami/ctlscript.sh', 'stop', 'apache']
-START_BITNAMI = [] #['/opt/bitnami/ctlscript.sh', 'start', 'apache']
+STOP_BITNAMI = ['/opt/bitnami/ctlscript.sh', 'stop', 'apache']
+START_BITNAMI = ['/opt/bitnami/ctlscript.sh', 'start', 'apache']
 
 def process_settings():
     parser = argparse.ArgumentParser(
